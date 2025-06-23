@@ -1,8 +1,12 @@
+import Tours from './components/Tours';
+
 function App() {
   return (
     <div className='App'>
-      <h1>Hello World</h1>
-      <main></main>
+      <h1>MVP Tournées</h1>
+      <main>
+        <Tours />
+      </main>
     </div>
   );
 }
