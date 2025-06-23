@@ -44,7 +44,7 @@ export default function Tours() {
   return (
     <div className='tours'>
       {tours.map((tour) => (
-        <div key={tour.id} className='tour'>
+        <div key={tour.id} className='tourCard'>
           <h2>{tour.name}</h2>
           <p>{tour.status}</p>
           <p>Nombre de représentations : {tour.totalPerformances}</p>

@@ -1,2 +1,22 @@
 .tours {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+}
+
+@media (max-width: 400px) {
+  .tours {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tourCard {
+  border-radius: 0.625rem;
+  background: white;
+  padding: 15px;
+}
+.tourCard h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
