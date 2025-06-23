@@ -8,6 +8,8 @@ export default function Tours() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
+
   useEffect(() => {
     const getTours = async () => {
       try {
@@ -41,17 +43,38 @@ export default function Tours() {
     return <div>Aucune tournée disponible pour le moment.</div>;
   }
 
+  const statuses = ['En cours', 'Planifiée', 'Terminée', 'Annulée'];
+  const filtre = selectedStatus
+    ? tours.filter((tour) => tour.status === selectedStatus)
+    : tours;
+
   return (
-    <div className='tours'>
-      {tours.map((tour) => (
-        <div key={tour.id} className='tourCard'>
-          <h2>{tour.name}</h2>
-          <p>{tour.status}</p>
-          <p>Nombre de représentations : {tour.totalPerformances}</p>
-          <p>Revenus totaux : {tour.totalRevenue} </p>
-          <p>Taux de remplissage moyen : {tour.averageFillRate}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className='filtre'>
+        {statuses.map((status) => (
+          <button
+            key={status}
+            onClick={() => setSelectedStatus(status)}
+            className={selectedStatus === status ? 'active' : ''}
+          >
+            {status}
+          </button>
+        ))}
+        <button onClick={() => setSelectedStatus(null)}>
+          Toutes les tournées
+        </button>
+      </div>
+      <div className='tours'>
+        {filtre.map((tour) => (
+          <div key={tour.id} className='tourCard'>
+            <h2>{tour.name}</h2>
+            <p>{tour.status}</p>
+            <p>Nombre de représentations : {tour.totalPerformances}</p>
+            <p>Revenus totaux : {tour.totalRevenue} </p>
+            <p>Taux de remplissage moyen : {tour.averageFillRate}</p>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
