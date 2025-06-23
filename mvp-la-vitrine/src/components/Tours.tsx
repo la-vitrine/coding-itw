@@ -57,6 +57,12 @@ export default function Tours() {
   return (
     <>
       <div className='filtre'>
+        <button
+          onClick={() => setSelectedStatus(null)}
+          className={!selectedStatus ? 'active' : ''}
+        >
+          Toutes les tournées
+        </button>
         {statuses.map((status) => (
           <button
             key={status}
@@ -66,15 +72,13 @@ export default function Tours() {
             {status}
           </button>
         ))}
-        <button onClick={() => setSelectedStatus(null)}>
-          Toutes les tournées
-        </button>
       </div>
       <input
         type='text'
         placeholder='Rechercher par titre de spectacle'
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        className='searchBar'
       />
       <div className='tours'>
         {filtre.length === 0 && 'Pas de tournée correspondante.'}
