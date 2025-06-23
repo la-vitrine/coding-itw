@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import type { Tour, Performance } from '../api/api';
 import { fetchTourById, fetchPerformances } from '../api/api';
+import {
+  getPerformancesFromStorage,
+  savePerformancesToStorage,
+} from '../api/localStorage';
+import PerfForm from './PerfForm';
+import type { PerformanceData } from './PerfForm';
 import './TourDetails.css';
 
 export default function TourDetails() {
@@ -14,23 +20,26 @@ export default function TourDetails() {
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    const getformances = async () => {
+    const getPerformances = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        const [tourData, allPerformances] = await Promise.all([
+        const [tourData, apiPerformances] = await Promise.all([
           fetchTourById(id),
           fetchPerformances(),
         ]);
 
-        const performancesId = allPerformances.filter(
+        setTour(tourData);
+        const performancesFromStorage = getPerformancesFromStorage();
+
+        const allPerformances = apiPerformances.concat(performancesFromStorage);
+
+        const performancesOfTour = allPerformances.filter(
           (perf) => perf.tourId === tourData.id
         );
 
-        // On met à jour nos états avec les données récupérées et filtrées
-        setTour(tourData);
-        setPerformances(performancesId);
+        setPerformances(performancesOfTour);
       } catch (err) {
         setError('Tournée non trouvée.');
         console.error(err);
@@ -39,8 +48,27 @@ export default function TourDetails() {
       }
     };
 
-    getformances();
+    getPerformances();
   }, [id]);
+
+  const handleAddPerformance = (performanceToAdd: PerformanceData) => {
+    const allPerformances = getPerformancesFromStorage();
+
+    const maxId = allPerformances.reduce((currentMaxId, perf) => {
+      return perf.id > currentMaxId ? perf.id : currentMaxId;
+    }, 0);
+    const newPerformanceId = maxId + 1;
+
+    const newPerformance: Performance = {
+      ...performanceToAdd,
+      id: newPerformanceId,
+    };
+
+    const updatedPerformances = [...allPerformances, newPerformance];
+    savePerformancesToStorage(updatedPerformances);
+
+    setPerformances((prev) => [...prev, newPerformance]);
+  };
 
   if (loading) return <div>Chargement des tournées</div>;
   if (error) return <div className='error-message'>{error}</div>;
@@ -74,10 +102,11 @@ export default function TourDetails() {
             <p>{perf.ticketPrice}$</p>
           </div>
         ))}
-        <Link to='/' className='retour'>
-          Retour à la liste des tournées
-        </Link>
       </div>
+      <PerfForm tourId={tour.id} onPerformanceAdded={handleAddPerformance} />
+      <Link to='/' className='retour'>
+        Retour à la liste des tournées
+      </Link>
     </div>
   );
 }
