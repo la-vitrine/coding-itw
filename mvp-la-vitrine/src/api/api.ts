@@ -1,13 +1,12 @@
-// api.ts (Corrected version)
+const API_URL = 'http://localhost:8000';
+
 export interface TourTeam {
-  // This should also be exported if used elsewhere
   director: string;
   stageManager: string;
   technicalDirector: string;
   costumeDesigner: string;
 }
 
-// IMPORTANT: Add 'export' here for the Tour interface
 export interface Tour {
   id: number;
   showId: number;
@@ -24,11 +23,9 @@ export interface Tour {
   notes: string;
 }
 
-const API_URL = 'http://localhost:8000'; // Your API base URL
-
 export const fetchTours = async (): Promise<Tour[]> => {
   try {
-    const response = await fetch(`${API_URL}/tours`); // Added '/' for robust path
+    const response = await fetch(`${API_URL}/tours`);
     if (!response.ok) {
       throw new Error(
         `Échec de la récupération des tournées: ${response.status} ${response.statusText}`
@@ -40,6 +37,62 @@ export const fetchTours = async (): Promise<Tour[]> => {
       'Erreur lors de la tentative de récupération des tournées:',
       error
     );
-    throw error; // Re-throw the error so the calling component can handle it
+    throw error;
+  }
+};
+
+export const fetchTourById = async (id: string): Promise<Tour[]> => {
+  try {
+    const response = await fetch(`${API_URL}/tours/${id}`);
+    if (!response.ok) {
+      throw new Error(
+        `Échec de la récupération de la tournée: ${response.status}`
+      );
+    }
+    return response.json();
+  } catch (error) {
+    console.error(`Erreur lors de la récupération de la tournée ${id}:`, error);
+    throw error;
+  }
+};
+
+export interface TechnicalRequirements {
+  stageSize: 'Petit' | 'Moyen' | 'Grand';
+  soundSystem: 'Basique' | 'Standard' | 'Professionnel';
+  lighting: 'Standard' | 'Complet';
+  specialEffects: string[];
+}
+
+export interface Performance {
+  id: number;
+  tourId: number;
+  date: string;
+  time: string;
+  city: string;
+  venue: string;
+  capacity: number;
+  ticketsSold: number;
+  ticketPrice: number;
+  status: 'Complet' | 'Presque Complet' | 'En vente' | 'Terminé' | 'Annulé';
+  category: 'Première' | 'Standard' | 'Spéciale';
+  technicalRequirements: TechnicalRequirements;
+  notes: string;
+}
+
+export const fetchPerformances = async (): Promise<Performance[]> => {
+  try {
+    const response = await fetch(`${API_URL}/performances`);
+    if (!response.ok) {
+      throw new Error(
+        `Échec de la récupération des performances: ${response.status} ${response.statusText}`
+      );
+    }
+    return response.json();
+  } catch (error) {
+    console.error(
+      'Erreur lors de la tentative de récupération des performances:',
+      error
+    );
+    throw error;
   }
 };

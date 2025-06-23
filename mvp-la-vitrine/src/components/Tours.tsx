@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import type { Tour } from '../api/api';
 import { fetchTours } from '../api/api';
 import './Tours.css';
@@ -83,16 +84,23 @@ export default function Tours() {
         className='searchBar'
       />
       {/* Affichage des tournées */}
+
       <div className='tours'>
         {filtre.length === 0 && 'Pas de tournée correspondante.'}
         {filtre.map((tour) => (
-          <div key={tour.id} className='tourCard'>
-            <h2>{tour.name}</h2>
-            <p>{tour.status}</p>
-            <p>Nombre de représentations : {tour.totalPerformances}</p>
-            <p>Revenus totaux : {tour.totalRevenue} </p>
-            <p>Taux de remplissage moyen : {tour.averageFillRate}</p>
-          </div>
+          <Link
+            to={`/tours/${tour.id}/performances`}
+            key={tour.id}
+            className='tourLink'
+          >
+            <div className='tourCard'>
+              <h2>{tour.name}</h2>
+              <p>{tour.status}</p>
+              <p>Nombre de représentations : {tour.totalPerformances}</p>
+              <p>Revenus totaux : {tour.totalRevenue}$ </p>
+              <p>Taux de remplissage moyen : {tour.averageFillRate}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </>
