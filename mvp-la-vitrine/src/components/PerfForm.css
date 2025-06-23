@@ -1,0 +1,61 @@
+.form {
+  background-color: white;
+
+  border-radius: 0.625rem;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.form h2 {
+  margin: 0 0 10px 0;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.formGroup label {
+  font-weight: bold;
+}
+
+.formGroup input[type='text'],
+.formGroup input[type='date'],
+.formGroup input[type='time'],
+.formGroup input[type='number'] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+form button[type='submit'] {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+  border-radius: 0.625rem;
+}
+
+/* Effet au survol du bouton */
+form button[type='submit']:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+}

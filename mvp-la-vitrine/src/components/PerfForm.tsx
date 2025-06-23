@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Performance } from '../api/api';
+import './PerfForm.css';
 
 export type PerformanceData = Omit<Performance, 'id'>;
 
@@ -60,10 +61,10 @@ export default function PerfForm({
 
   return (
     <div className='form'>
-      <h3>Ajouter une performance</h3>
+      <h2>Ajouter une performance</h2>
       <form onSubmit={handleSubmit}>
-        <div className='form-row'>
-          <div className='form-group'>
+        <div className='formRow'>
+          <div className='formGroup'>
             <label htmlFor='date'>Date</label>
             <input
               type='date'
@@ -74,7 +75,7 @@ export default function PerfForm({
               required
             />
           </div>
-          <div className='form-group'>
+          <div className='formGroup'>
             <label htmlFor='time'>Heure</label>
             <input
               type='time'
@@ -86,8 +87,8 @@ export default function PerfForm({
             />
           </div>
         </div>
-        <div className='form-row'>
-          <div className='form-group'>
+        <div className='formRow'>
+          <div className='formGroup'>
             <label htmlFor='city'>Ville</label>
             <input
               type='text'
@@ -99,7 +100,7 @@ export default function PerfForm({
               required
             />
           </div>
-          <div className='form-group'>
+          <div className='formGroup'>
             <label htmlFor='venue'>Lieu</label>
             <input
               type='text'
@@ -112,8 +113,8 @@ export default function PerfForm({
             />
           </div>
         </div>
-        <div className='form-row'>
-          <div className='form-group'>
+        <div className='formRow'>
+          <div className='formGroup'>
             <label htmlFor='ticketsSold'>Places vendues</label>
             <input
               type='number'
@@ -123,7 +124,7 @@ export default function PerfForm({
               onChange={handleChange}
             />
           </div>
-          <div className='form-group'>
+          <div className='formGroup'>
             <label htmlFor='capacity'>Capacité totale</label>
             <input
               type='number'
@@ -134,7 +135,7 @@ export default function PerfForm({
               required
             />
           </div>
-          <div className='form-group'>
+          <div className='formGroup'>
             <label htmlFor='ticketPrice'>Prix du billet</label>
             <input
               type='number'
