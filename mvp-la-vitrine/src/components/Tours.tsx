@@ -56,6 +56,7 @@ export default function Tours() {
 
   return (
     <>
+      {/* Boutons de filtre */}
       <div className='filtre'>
         <button
           onClick={() => setSelectedStatus(null)}
@@ -73,6 +74,7 @@ export default function Tours() {
           </button>
         ))}
       </div>
+      {/* Searchbar */}
       <input
         type='text'
         placeholder='Rechercher par titre de spectacle'
@@ -80,6 +82,7 @@ export default function Tours() {
         onChange={(e) => setSearch(e.target.value)}
         className='searchBar'
       />
+      {/* Affichage des tournées */}
       <div className='tours'>
         {filtre.length === 0 && 'Pas de tournée correspondante.'}
         {filtre.map((tour) => (
