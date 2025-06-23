@@ -10,6 +10,8 @@ export default function Tours() {
 
   const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
 
+  const [search, setSearch] = useState<string>('');
+
   useEffect(() => {
     const getTours = async () => {
       try {
@@ -44,9 +46,13 @@ export default function Tours() {
   }
 
   const statuses = ['En cours', 'Planifiée', 'Terminée', 'Annulée'];
-  const filtre = selectedStatus
-    ? tours.filter((tour) => tour.status === selectedStatus)
-    : tours;
+  const filtre = tours
+    .filter((tour) => {
+      return selectedStatus ? tour.status === selectedStatus : tours;
+    })
+    .filter((tour) => {
+      return tour.name.toLowerCase().includes(search.toLowerCase());
+    });
 
   return (
     <>
@@ -64,7 +70,14 @@ export default function Tours() {
           Toutes les tournées
         </button>
       </div>
+      <input
+        type='text'
+        placeholder='Rechercher par titre de spectacle'
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       <div className='tours'>
+        {filtre.length === 0 && 'Pas de tournée correspondante.'}
         {filtre.map((tour) => (
           <div key={tour.id} className='tourCard'>
             <h2>{tour.name}</h2>
