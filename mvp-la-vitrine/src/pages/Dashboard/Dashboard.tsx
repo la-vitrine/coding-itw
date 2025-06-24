@@ -1,4 +1,4 @@
-import type { Tour } from '../api/api';
+import type { Tour } from '../../api/api';
 import './Dashboard.css';
 
 interface DashboardProps {

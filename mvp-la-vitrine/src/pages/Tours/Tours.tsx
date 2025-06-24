@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import type { Tour } from '../api/api';
+import type { Tour } from '../../api/api';
 import './Tours.css';
 
 interface ToursProps {

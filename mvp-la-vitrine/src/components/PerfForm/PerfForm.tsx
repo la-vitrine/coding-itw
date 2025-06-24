@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Performance } from '../api/api';
+import type { Performance } from '../../api/api';
 import './PerfForm.css';
 
 export type PerformanceData = Omit<Performance, 'id'>;

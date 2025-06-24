@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchTours } from './api/api';
 import type { Tour } from './api/api';
-import Tours from './components/Tours';
-import TourDetails from './components/TourDetails';
-import Dashboard from './pages/Dashboard';
+import Tours from './pages/Tours/Tours';
+import TourDetails from './pages/TourDetails/TourDetails';
+import Dashboard from './pages/Dashboard/Dashboard';
 import { Link } from 'react-router-dom';
 
 function App() {

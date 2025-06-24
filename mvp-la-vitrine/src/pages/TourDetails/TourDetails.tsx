@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import type { Tour, Performance } from '../api/api';
-import { fetchTourById, fetchPerformances } from '../api/api';
+import type { Tour, Performance } from '../../api/api';
+import { fetchTourById, fetchPerformances } from '../../api/api';
 import {
   getPerformancesFromStorage,
   savePerformancesToStorage,
-} from '../api/localStorage';
-import PerfForm from './PerfForm';
-import type { PerformanceData } from './PerfForm';
+} from '../../api/localStorage';
+import PerfForm from '../../components/PerfForm/PerfForm';
+import type { PerformanceData } from '../../components/PerfForm/PerfForm';
 import './TourDetails.css';
 
 export default function TourDetails() {
