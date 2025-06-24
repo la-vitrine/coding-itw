@@ -14,9 +14,18 @@ body {
   color: var(--primary);
   margin: 0;
 }
-
+a {
+  text-decoration: none;
+}
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
+}
+
+header h1:hover,
+header a:hover {
+  color: var(--secondary);
+  background: var(--primary);
 }

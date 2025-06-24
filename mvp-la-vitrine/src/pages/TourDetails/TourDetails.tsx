@@ -81,10 +81,8 @@ export default function TourDetails() {
   };
 
   return (
-    <div>
-      <h1>{tour.name}</h1>
-      <h2>Liste des représentations</h2>
-
+    <>
+      <h1 className='tourName'>{tour.name}</h1>
       {performances.length === 0 && 'Pas de date pour cette tournée'}
       <div className='performances'>
         {performances.map((perf) => (
@@ -107,6 +105,6 @@ export default function TourDetails() {
       <Link to='/' className='retour'>
         Retour à la liste des tournées
       </Link>
-    </div>
+    </>
   );
 }

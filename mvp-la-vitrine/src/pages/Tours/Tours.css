@@ -24,7 +24,9 @@
 .filtre {
   display: flex;
   gap: 5px;
-  margin: 10px;
+  margin: 10px 0;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 button {
@@ -36,13 +38,24 @@ button {
   cursor: pointer;
 }
 
-.active {
+button:hover {
+  background: #048db74d;
+  color: white;
+}
+
+button.active {
   background: #048db74d;
   color: var(--primary);
 }
 
 .searchBar {
-  margin: 10px;
+  margin: 10px 0;
   padding: 5px;
   border-radius: 0.5rem;
+  width: 100%;
+}
+
+.tourCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }

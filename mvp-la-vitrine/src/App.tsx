@@ -5,7 +5,7 @@ import type { Tour } from './api/api';
 import Tours from './pages/Tours/Tours';
 import TourDetails from './pages/TourDetails/TourDetails';
 import Dashboard from './pages/Dashboard/Dashboard';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function App() {
   const [tours, setTours] = useState<Tour[]>([]);
@@ -35,8 +35,10 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <header>
-          <h1>MVP Tournées</h1>
-          <Link to='/dashboard'>Dashboard</Link>
+          <NavLink to='/'>
+            <h1>MVP Tournées</h1>
+          </NavLink>
+          <NavLink to='/dashboard'>Dashboard</NavLink>
         </header>
 
         <main>

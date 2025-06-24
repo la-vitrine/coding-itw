@@ -13,3 +13,12 @@
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
+
+.tourName {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.retour {
+  text-decoration: underline;
+}
