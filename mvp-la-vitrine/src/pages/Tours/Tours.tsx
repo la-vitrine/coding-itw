@@ -11,17 +11,14 @@ interface ToursProps {
 
 export default function Tours({ tours, loading, error }: ToursProps) {
   const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
-
   const [search, setSearch] = useState<string>('');
 
   if (loading) {
     return <div>Chargement des tournées...</div>;
   }
-
   if (error) {
     return <div>{error}</div>;
   }
-
   if (tours.length === 0) {
     return <div>Aucune tournée disponible pour le moment.</div>;
   }
@@ -55,6 +52,7 @@ export default function Tours({ tours, loading, error }: ToursProps) {
           </button>
         ))}
       </div>
+
       {/* Searchbar */}
       <input
         type='text'
@@ -63,8 +61,8 @@ export default function Tours({ tours, loading, error }: ToursProps) {
         onChange={(e) => setSearch(e.target.value)}
         className='searchBar'
       />
-      {/* Affichage des tournées */}
 
+      {/* Affichage des tournées */}
       <div className='tours'>
         {filtre.length === 0 && 'Pas de tournée correspondante.'}
         {filtre.map((tour) => (

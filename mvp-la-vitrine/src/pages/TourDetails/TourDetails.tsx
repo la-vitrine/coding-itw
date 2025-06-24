@@ -19,6 +19,7 @@ export default function TourDetails() {
 
   const { id } = useParams<{ id: string }>();
 
+  // Récupération des données de la tournée et des performances associées
   useEffect(() => {
     const getPerformances = async () => {
       try {
@@ -54,6 +55,7 @@ export default function TourDetails() {
   const handleAddPerformance = (performanceToAdd: PerformanceData) => {
     const allPerformances = getPerformancesFromStorage();
 
+    // Assignation d'un nouvel ID pour ajoute la performance créée
     const maxId = allPerformances.reduce((currentMaxId, perf) => {
       return perf.id > currentMaxId ? perf.id : currentMaxId;
     }, 0);

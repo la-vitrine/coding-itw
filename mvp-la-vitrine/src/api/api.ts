@@ -1,5 +1,6 @@
 const API_URL = 'http://localhost:8000';
 
+// Logique de récupération des données des tournées
 export interface TourTeam {
   director: string;
   stageManager: string;
@@ -56,6 +57,7 @@ export const fetchTourById = async (id: string): Promise<Tour[]> => {
   }
 };
 
+// Logique de récupération des données des performances
 export interface TechnicalRequirements {
   stageSize: 'Petit' | 'Moyen' | 'Grand';
   soundSystem: 'Basique' | 'Standard' | 'Professionnel';

@@ -12,6 +12,7 @@ function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Recupération des données des tournées depuis l'API
   useEffect(() => {
     const getTours = async () => {
       try {

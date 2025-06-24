@@ -1,5 +1,6 @@
 import type { Performance } from './api.ts';
 
+// Lecture des performances du local storage
 export const getPerformancesFromStorage = (): Performance[] => {
   const data = localStorage.getItem('performances');
   if (data) {
@@ -8,6 +9,7 @@ export const getPerformancesFromStorage = (): Performance[] => {
   return [];
 };
 
+// Ecriture des performances  dans le local storage
 export const savePerformancesToStorage = (
   performances: Performance[]
 ): void => {

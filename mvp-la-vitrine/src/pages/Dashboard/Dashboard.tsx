@@ -8,25 +8,22 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ tours, loading, error }: DashboardProps) {
+  // Calcul des statistiques
   const totalRepresentations = tours.reduce((total, tour) => {
     return total + tour.totalPerformances;
   }, 0);
-
   const revenusCumules = tours.reduce((total, tour) => {
     return total + tour.totalRevenue;
   }, 0);
-
   const sommeRemplissage = tours.reduce((total, tour) => {
     return total + tour.averageFillRate;
   }, 0);
-
   const tauxRemplissage =
     sommeRemplissage / tours.length || "Aucun spectacle n'a été joué";
 
   if (loading) {
     return <div>Chargement des tournées...</div>;
   }
-
   if (error) {
     return <div>{error}</div>;
   }
