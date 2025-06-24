@@ -1,4 +1,5 @@
 import type { Tour } from '../api/api';
+import './Dashboard.css';
 
 interface DashboardProps {
   tours: Tour[];
@@ -33,18 +34,19 @@ export default function Dashboard({ tours, loading, error }: DashboardProps) {
   return (
     <div className='dashboard'>
       <h2>Tableau de bord</h2>
-
-      <div className='statCard'>
-        <h3>Total représentations</h3>
-        <p>{totalRepresentations}</p>
-      </div>
-      <div className='statCard'>
-        <h3>Revenus cumulés</h3>
-        <p>{revenusCumules}</p>
-      </div>
-      <div className='statCard'>
-        <h3>Taux de remplissage moyen</h3>
-        <p>{tauxRemplissage}%</p>
+      <div className='stats'>
+        <div className='statsCard'>
+          <h3>Total représentations</h3>
+          <p>{totalRepresentations}</p>
+        </div>
+        <div className='statsCard'>
+          <h3>Revenus cumulés</h3>
+          <p>{revenusCumules}</p>
+        </div>
+        <div className='statsCard'>
+          <h3>Taux de remplissage moyen</h3>
+          <p>{tauxRemplissage}%</p>
+        </div>
       </div>
     </div>
   );
