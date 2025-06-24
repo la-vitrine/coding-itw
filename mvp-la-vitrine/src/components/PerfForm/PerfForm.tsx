@@ -56,6 +56,8 @@ export default function PerfForm({
 
     onPerformanceAdded(performanceData);
 
+    alert('Performance ajoutée avec succès !');
+
     setFormData(initialForm);
   };
 
