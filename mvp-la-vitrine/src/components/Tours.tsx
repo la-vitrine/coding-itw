@@ -1,38 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Tour } from '../api/api';
-import { fetchTours } from '../api/api';
 import './Tours.css';
 
-export default function Tours() {
-  const [tours, setTours] = useState<Tour[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+interface ToursProps {
+  tours: Tour[];
+  loading: boolean;
+  error: string | null;
+}
 
+export default function Tours({ tours, loading, error }: ToursProps) {
   const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
 
   const [search, setSearch] = useState<string>('');
-
-  useEffect(() => {
-    const getTours = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const data = await fetchTours();
-        setTours(data);
-      } catch (err) {
-        console.error('Erreur affichage des tournées:', err);
-        setError(
-          'Impossible de charger les tournées. Veuillez réessayer plus tard.'
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getTours();
-  }, []);
 
   if (loading) {
     return <div>Chargement des tournées...</div>;
